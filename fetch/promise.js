@@ -1,5 +1,3 @@
-import { students, randomNumbers } from "../data.js";
-
 // Promise is a built-in object in JavaScript that represents the result of an asynchronous operation
 // pending: This is the default state of a defined promise
 // fulfilled:  This is the state of a successful promise
