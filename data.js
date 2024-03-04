@@ -1,8 +1,8 @@
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+export const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const randomNumbers = [...Array(10)].map(() => Math.floor(Math.random() * 10));
+export const randomNumbers = [...Array(10)].map(() => Math.floor(Math.random() * 10));
 
-const colors = [
+export const colors = [
   { id: 1, name: "red" },
   { id: 2, name: "green" },
   { id: 3, name: "blue" },
@@ -15,7 +15,7 @@ const colors = [
   { id: 10, name: "gray" }
 ];
 
-const students = [
+export const students = [
   {
     id: 1,
     first_name: "Leah",

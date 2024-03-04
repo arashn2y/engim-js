@@ -1,3 +1,5 @@
+import { colors, numbers, students } from "./../data.js";
+
 let result = [];
 
 // destructuring and spread operator
@@ -45,6 +47,15 @@ let result = [];
 // result = numbers.reduce((acc, number) => acc + number, 0);
 // 12. sort()
 // result = students.sort((a, b) => a.first_name.localeCompare(b.first_name));
+// result = students.sort((a, b) => {
+//   if (a.age > b.age) {
+//     return 1;
+//   } else if (a.age < b.age) {
+//     return -1;
+//   } else {
+//     return 0;
+//   }
+// });
 //reDesign with destructuring and callback function
 // 13. reverse()
 // result = students.reverse();
