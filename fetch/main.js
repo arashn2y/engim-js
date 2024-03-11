@@ -17,6 +17,9 @@ const fetchData = () => {
     });
 };
 
+const productDiv = document.getElementById("product");
+const title = document.getElementById("title");
+
 const AsyncFetchData = async () => {
   const url = "https://dummyjson.com/products";
   try {
@@ -28,6 +31,25 @@ const AsyncFetchData = async () => {
     console.log(error);
   }
 };
+
+const FetchDataOfFirstProduct = async () => {
+  const url = "https://dummyjson.com/products/1";
+  try {
+    const response = await fetch(url);
+    console.log(response);
+    const data = await response.json();
+    title.textContent = data.title;
+    data.images.forEach(image => {
+      const img = document.createElement("img");
+      img.src = image;
+      productDiv.appendChild(img);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+FetchDataOfFirstProduct();
 
 const createProduct = async product => {
   const url = "https://dummyjson.com/products/add";
