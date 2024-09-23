@@ -63,6 +63,7 @@ const { first_name: name, last_name: last, age: eta } = secondStudent;
 //   } else {
 //     return false;
 //   }
+//  console.log(number);
 // }
 // result = numbers.filter(filterNumber);
 // console.log(result);
