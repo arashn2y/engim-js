@@ -4,6 +4,7 @@ const fetchData = () => {
   const promise = fetch(url);
   // console.log(promise);
 
+  console.log("Start");
   const jsonPromise = promise
     .then(body => {
       return body.json();
