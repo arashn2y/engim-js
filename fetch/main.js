@@ -1,21 +1,29 @@
 const fetchData = () => {
-  const url = "https://dummyjson.com/productss";
+  const url = "https://dummyjson.com/products";
+
   const promise = fetch(url);
-  console.log(promise);
-  const jsonPromise = promise.then(response => {
-    console.log(promise);
-    return response.json();
-  });
-  console.log(jsonPromise);
+  // console.log(promise);
+
+  const jsonPromise = promise
+    .then(body => {
+      return body.json();
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
   jsonPromise
     .then(data => {
+      console.log("OK");
       console.log(data);
     })
     .catch(error => {
-      console.log(jsonPromise);
+      console.log("Error");
       console.log(error);
     });
 };
+
+// fetchData();
 
 const productDiv = document.getElementById("product");
 const title = document.getElementById("title");
@@ -23,14 +31,15 @@ const title = document.getElementById("title");
 const AsyncFetchData = async () => {
   const url = "https://dummyjson.com/products";
   try {
-    const response = await fetch(url);
-    console.log(response);
+    const response = await fetch(url); // GET
     const data = await response.json();
     console.log(data);
-  } catch (error) {
-    console.log(error);
+  } finally {
+    console.log("Done");
   }
 };
+
+AsyncFetchData();
 
 const FetchDataOfFirstProduct = async () => {
   const url = "https://dummyjson.com/products/1";
@@ -49,7 +58,7 @@ const FetchDataOfFirstProduct = async () => {
   }
 };
 
-FetchDataOfFirstProduct();
+// FetchDataOfFirstProduct();
 
 const createProduct = async product => {
   const url = "https://dummyjson.com/products/add";

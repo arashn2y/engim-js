@@ -4,35 +4,37 @@
 // rejected: This is the state of a failed promise
 
 const callback = (resolve, reject) => {
-  setTimeout(() => {
-    resolve({ status: 200, data: students });
-  }, 3000);
+  const setTimeoutCallback = () => {
+    reject(new Error("Promise rejected"));
+  };
+  setTimeout(setTimeoutCallback, 3000);
 };
 
 // resolve and reject are functions that are passed to the promise
 const firstResolvedPromise = new Promise(callback);
+console.log(firstResolvedPromise);
 
-const secondResolvedPromise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve({ status: 200, data: randomNumbers });
-  }, 1000);
-});
+// const secondResolvedPromise = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve({ status: 200, data: randomNumbers });
+//   }, 1000);
+// });
 
-const rejectedPromise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    reject({ status: 404, data: "Not found" });
-  }, 1000);
-});
+// const rejectedPromise = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     reject({ status: 404, data: "Not found" });
+//   }, 1000);
+// });
 
-// firstResolvedPromise
-//   .then(result => console.log(result))
-//   .catch(error => console.log(error))
-//   .finally(() => console.log("close connection with DB in firstResolvedPromise"));
+firstResolvedPromise
+  .then(data => console.log(data))
+  .catch(error => console.log(error))
+  .finally(() => console.log("close connection with DB in firstResolvedPromise"));
 
-const fetchData = async () => {
-  const response = await firstResolvedPromise;
-  console.log(response);
-};
+// const fetchData = async () => {
+//   const response = await firstResolvedPromise;
+//   console.log(response);
+// };
 
 // secondResolvedPromise
 //   .then(result => console.log(result))
@@ -44,14 +46,14 @@ const fetchData = async () => {
 //   .catch(error => console.log(error))
 //   .finally(() => console.log("close connection with DB in rejectedPromise"));
 
-// Promise.all([firstResolvedPromise, rejectedPromise])
-//   .then(result => console.log(result))
-//   .catch(error => console.log(error))
-//   .finally(() => console.log("close connection with DB in Promise.all with rejectedPromise"));
+Promise.all([firstResolvedPromise, rejectedPromise])
+  .then(result => console.log(result))
+  .catch(error => console.log(error))
+  .finally(() => console.log("close connection with DB in Promise.all with rejectedPromise"));
 
 // Promise.all([firstResolvedPromise, secondResolvedPromise])
 //   .then(result => console.log(result))
 //   .catch(error => console.log(error))
 //   .finally(() => console.log("close connection with DB in Promise.all with secondResolvedPromise"));
 
-fetchData();
+// fetchData();

@@ -4,17 +4,21 @@ let result = [];
 
 // destructuring and spread operator
 
-// const [first, second, ...rest] = colors;
-// console.log(first);
-// console.log(second);
+// const [first, second, third, ...rest] = colors;
+// console.log(third);
 // console.log(rest);
+// console.log(colors);
 
 // const newColors = [...colors, { id: 11, name: "pink" }];
 // console.log(newColors);
+// console.log(students);
 
-// const [firstSrudent, secondStudent, ...restStudents] = students;
-// const { first_name, last_name, age } = firstSrudent;
-// const { first_name, last_name, age } = secondStudent;
+const [firstStudent, secondStudent, ...restStudents] = students;
+// console.log(firstStudent);
+const { first_name, last_name, age } = firstStudent;
+const { first_name: name, last_name: last, age: eta } = secondStudent;
+// console.log(first_name, last_name, age);
+// console.log(name, last, eta);
 
 // <------------------------------------------------------------>
 // <------------------------------------------------------------>
@@ -32,26 +36,78 @@ let result = [];
 // 4. shift()
 // colors.shift();
 // 5. forEach()
-// result = numbers.forEach((number) => console.log(number));
+// console.log(numbers);
+// function showNumber(number) {
+//   console.log(number);
+// }
+// const showNumber = (number) => {
+//   console.log(number)
+// }
+// result = numbers.forEach(number => {
+//   console.log(number);
+// });
+// 1 => showNumber(1)
+// 2 => showNumber(2)
+// console.log(result);
 // 6. map()
-// result = numbers.map((number) => number * 2);
+// result = numbers.map(number => number * 2);
+// result = colors.map(color => {
+//   color.id = color.id + 1;
+//   return color;
+// });
+// console.log(result);
 // 7. filter()
-// result = numbers.filter((number) => number > 5);
+// function filterNumber(number) {
+//   if (number < 5) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+// result = numbers.filter(filterNumber);
+// console.log(result);
 // 8. find()
-// result = numbers.find((number) => number === 5);
+// result = numbers.find(number => number === 100);
 // 9. every()
-// result = numbers.every((number) => number > 0);
+// result = numbers.every(number => number > 0);
 // 10. some()
-// result = numbers.some((number) => number > 5);
+// result = numbers.some(number => number > 10);
 // 11. reduce()
-// result = numbers.reduce((acc, number) => acc + number, 0);
+// function addNumbers(acc, number) {
+//   return acc + number;
+// }
+// result = numbers.reduce(addNumbers, 0);
+// acc = 0;
+// number = 1;
+// 0 + 1 => 1
+
+// acc = 1;
+// number = 2;
+// 1 + 2 => 3
+
+// acc = 3
+// number = 3;
+// 3 + 3 => 6
+
+// acc = 6;
+
 // 12. sort()
-// result = students.sort((a, b) => a.first_name.localeCompare(b.first_name));
+// function sortStudents(a, b) {
+//   return a.first_name.localeCompare(b.first_name);
+// }
+// function sortNubmers(a, b) {
+//   if (a < b) return 1;
+//   if (a > b) return -1;
+//   return 0;
+// }
+// console.log(students);
+// result = numbers.sort(sortNubmers);
+// result = students.sort(sortStudents);
 // result = students.sort((a, b) => {
 //   if (a.age > b.age) {
-//     return 1;
-//   } else if (a.age < b.age) {
 //     return -1;
+//   } else if (a.age < b.age) {
+//     return 1;
 //   } else {
 //     return 0;
 //   }
