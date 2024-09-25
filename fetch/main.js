@@ -4,7 +4,6 @@ const fetchData = () => {
   const promise = fetch(url);
   // console.log(promise);
 
-  console.log("Start");
   const jsonPromise = promise
     .then(body => {
       return body.json();
@@ -35,27 +34,41 @@ const AsyncFetchData = async () => {
     const response = await fetch(url); // GET
     const data = await response.json();
     console.log(data);
-  } finally {
-    console.log("Done");
+  } catch (error) {
+    console.log(error);
+    alert("Error");
   }
 };
 
-AsyncFetchData();
+// AsyncFetchData();
 
 const FetchDataOfFirstProduct = async () => {
   const url = "https://dummyjson.com/products/1";
   try {
     const response = await fetch(url);
-    console.log(response);
     const data = await response.json();
+    console.log(data);
     title.textContent = data.title;
+    data = null;
     data.images.forEach(image => {
       const img = document.createElement("img");
       img.src = image;
+      img.className = "w-25 h-25";
+      // img.classList.add("w-25", "h-25");
       productDiv.appendChild(img);
     });
+    const h1 = document.createElement("h1");
+    h1.textContent = data.price;
+    const h2 = document.createElement("h2");
+    h2.textContent = data.description;
+    productDiv.appendChild(h1);
+    productDiv.appendChild(h2);
   } catch (error) {
     console.log(error);
+    const span = document.createElement("span");
+    span.textContent = error.message;
+    span.className = "text-danger";
+    productDiv.appendChild(span);
   }
 };
 
@@ -63,24 +76,39 @@ const FetchDataOfFirstProduct = async () => {
 
 const createProduct = async product => {
   const url = "https://dummyjson.com/products/add";
-  const response = await fetch(url, {
-    method: "POST",
-    body: JSON.stringify(product),
-    headers: {
-      "Content-Type": "application/json"
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(product),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    const status = response.status;
+    if (status === 201) {
+      const data = await response.json();
+      console.log(data);
+    } else if (status === 404) {
+      console.log(`Error: ${status} - ${response.statusText}`);
+    } else {
+      console.log("Not Specified Error");
     }
-  });
-  const status = response.status;
-  if (status === 200) {
-    const data = await response.json();
-    console.log(data);
-  } else {
-    console.log("Error");
+  } catch (error) {
+    console.log(error);
   }
 };
 
 const updateProduct = async (id, product) => {
   const url = `https://dummyjson.com/products/${id}`;
+  // id = 1 =>  const url = `https://dummyjson.com/products/1`;
+  // id = 2 =>  const url = `https://dummyjson.com/products/2`;
+  // id = 3 =>  const url = `https://dummyjson.com/products/3`;
+
+  // CRUD
+  // Create => Post
+  // Read => Get
+  // Update => Put
+  // Delete => Delete
   const response = await fetch(url, {
     method: "PUT",
     body: JSON.stringify(product),
@@ -102,6 +130,9 @@ const deleteProduct = async id => {
   const response = await fetch(url, {
     method: "DELETE"
   });
+  console.log(response);
+  const json = await response.json();
+  console.log(json);
   const status = response.status;
   if (status === 200) {
     console.log("Product deleted");
@@ -112,6 +143,9 @@ const deleteProduct = async id => {
 
 // fetchData();
 // AsyncFetchData();
-// createProduct({ name: 'test', price: 100 });
-// updateProduct(1, { name: 'test', title: 'Iphone 14' ,price: 1000000 });
-// deleteProduct(1);
+// createProduct({ title: "test", price: 100, description: "An ultimate  new version of Iphone", rating: 4.54 });
+// updateProduct(1, { title: "Iphone 14", price: 1000000 });
+deleteProduct(1);
+deleteProduct(2);
+deleteProduct(3);
+deleteProduct(4);

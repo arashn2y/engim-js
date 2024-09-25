@@ -36,3 +36,5 @@ const canDrink = age => {
     return "Please provide a number";
   }
 };
+
+canDrink("18");

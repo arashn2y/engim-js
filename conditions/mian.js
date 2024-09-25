@@ -1,4 +1,5 @@
 function isUserLoggedIn(loginStatus) {
+  const numbers = [1, 2, 3, 4, 5];
   // 1. if statement
   if (loginStatus === true) {
     return true;

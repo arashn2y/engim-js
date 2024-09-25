@@ -31,7 +31,6 @@
 // isValidPassword(password, username);
 // <----------3---------->
 
-
 // <----------4---------->
 // use the data from this api: 'https://jsonplaceholder.typicode.com/users'
 //A pangram is a sentence that contains every letter of the alphabet, like:
@@ -45,5 +44,99 @@
 
 // <----------5---------->
 // use this api: 'https://jsonplaceholder.typicode.com/users'
+
+const url = "https://jsonplaceholder.typicode.com/users";
+// get
+async function fetchUsers() {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// fetchUsers();
+
+// create
+async function createUser(user) {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    const status = response.status;
+    if (status === 201) {
+      const data = await response.json();
+      console.log(data);
+    } else {
+      console.log("Error");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+createUser({
+  name: "John Doe",
+  username: "johndoe",
+  email: "johnDoe@gmail.com"
+});
+
+// update
+async function updateUser(id, user) {
+  try {
+    const response = await fetch(`${url}/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    const status = response.status;
+    if (status === 200) {
+      const data = await response.json();
+      console.log(data);
+    } else {
+      console.log("Error");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const user = {
+  id: 4,
+  name: "Alfonso Black",
+  username: "alfonsoblack"
+};
+
+updateUser(user.id, {
+  name: "John Doe"
+  // username: "johndoe",
+});
+
+// delete
+async function deleteData(id) {
+  try {
+    const response = await fetch(`${url}/${id}`, {
+      method: "DELETE"
+    });
+    const status = response.status;
+    if (status === 200) {
+      console.log("Deleted");
+    } else {
+      console.log("Error");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// deleteData(4);
+
 //  do "create, update and delete" operations
-// info: https://dummyjson.com/
